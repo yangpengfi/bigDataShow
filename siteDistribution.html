@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>站点分布</title>
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="lib/bootstrap/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/base.css"/>
+    <link rel="stylesheet" href="css/siteDIs.css"/>
+</head>
+<body>
+<!--导航-->
+<header>
+    <ul class="list-unstyled list-inline inNav pull-left">
+        <li onclick="window.location.href='index.html'"><img src="images/inNavLogo.png" alt=""/></li>
+        <li><a href="passengerStatistics.html">客流统计</a></li>
+        <li><a href="netCoverage.html">线网分布</a></li>
+        <li><a class="act" href="siteDistribution.html">站点分布</a></li>
+        <li><a href="realTimeVehicles.html">实时车辆</a></li>
+        <li><a href="cooperativeCity.html">合作城市</a></li>
+        <li><a href="contactUs.html">联系我们</a></li>
+    </ul>
+    <div class="pull-right tqcj">
+        <p class="pull-left text-left">
+            <span class="dateTimes">10:09:30:402</span><br/>
+            <span class="dateTimes2">2017-8-7</span>
+        </p>
+        <p class="pull-left" id="weather">
+            <span class="act city">深圳</span>
+            <img src="images/tq.png" alt="天气情况"/>
+            <span class="temper">27°c</span>
+        </p>
+    </div>
+</header>
+<!--地图-->
+<div class="mainCont">
+    <div id="siteChart"></div>
+</div>
+<!--左侧图表-->
+<div id="contLeft">
+    <h2><i class="leftSort"></i>站点客流排行TOP10</h2>
+    <div id="zdkChart"></div>
+</div>
+<!--右侧图表-->
+<div class="text-right" id="contRight">
+    <h2>站点统计 <i class="rightSort"></i></h2>
+    <span class="siteNum">123456</span>
+    <h2>站点线路数量 <i class="rightSort"></i></h2>
+    <div id="zdxChart"></div>
+</div>
+<!--页面加载进度中-->
+<div class="loading"></div>
+<script src="http://api.map.baidu.com/getscript?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM&services=&t=20170803155555"></script>
+<script src="lib/jquery-1.11.3.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="lib/echarts/echarts.js"></script>
+<script src="lib/echarts/extension/bmap.js"></script>
+<script src="lib/reconnecting-websocket.min.js"></script>
+<script src="js/base.js"></script>
+<script src="js/getStationData.js"></script>
+<script src="js/siteDistr.js"></script>
+</body>
+</html>

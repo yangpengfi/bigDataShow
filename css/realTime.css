@@ -1,0 +1,15 @@
+/*两侧容器设置*/
+#contLeft{left: 1rem;width: 7rem;}
+#contLeft>div{width: 100%;height: 80%;}
+#contRight{right:1.1rem;width: 8.25rem;}
+#contRight>div{width: 100%;height: 49.2%;}
+/*两侧文本样式*/
+.busNum{font-size: 1.5rem;color: #f5af50;}
+#contRight>h2{padding: 0.35rem 0;}
+#contRight>span{display:inline-block;border-bottom: 1px solid #3F3D3D;padding:0.1rem;}
+.highest{font-size: 0.7rem;color:#d6454a;}
+.highest>span{font-size: 1.2rem;}
+.lowest{font-size: 0.7rem;color:#47c4c5;}
+.lowest>span{font-size: 1.2rem;}
+.average{font-size: 0.6rem;color:#3eabab;}
+.average>span{font-size: 1.2rem;color:#1bae61;}

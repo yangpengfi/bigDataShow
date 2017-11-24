@@ -1,0 +1,38 @@
+/*cont*/
+#contLeft{left: 1rem;width: 6.5rem;/*13.5%;*/ }
+#contLeft>div{width: 100%;height: 92%;}
+#contRight>div{width: 100%;height: 84%;}
+#contRight{right:1.2rem;width: 5.75rem;/*12%;*/}
+
+.cunts{
+    font-size: 1.2rem;
+    color: #f5af50;
+}
+.pointer{
+    position: absolute;
+    left: 20%;
+    z-index: 6;
+}
+.anNum{
+    position: absolute;
+    right: -.2rem;
+    top:-.3rem;
+    width: 2.5rem;
+}
+.actual{
+    display: inline-block;
+    width: 2.5rem;
+    color: #EC5B9F;
+    text-align: center;
+    font-size: 16px;
+}
+.prediction{
+    display: inline-block;
+    width: 2.5rem;
+    color: #1d7df8;
+    text-align: center;
+    font-size: 14px;
+}
+
+#contLeft>p>span:first-child{color:#ec5ba0;font-size: 16px;}
+#contLeft>p>span:last-child{color:#2e78e5;font-size: 16px;}

@@ -1,0 +1,76 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+        body, html{width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+        #allmap{height:800px;width:100%;}
+        #r-result{width:100%; font-size:14px;}
+    </style>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM&services=&t=20170803155555"></script>
+    <title>城市名定位</title>
+</head>
+<body>
+<div id="allmap"></div>
+<div id="r-result">
+    经度: <input id="longitude" type="text" style="width:100px; margin-right:10px;" value="120.61990712"/>
+    纬度: <input id="latitude" type="text" style="width:100px; margin-right:10px;" value="31.31798737"/>
+    <input type="button" value="查询" onclick="theLocation()" />
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    //画线需要的坐标数组，每n秒更新一次  
+    var coordinateArr = [];
+
+    // 百度地图API功能  
+    var map = new BMap.Map("allmap");
+    map.centerAndZoom(new BMap.Point("苏州"),14);
+    map.enableScrollWheelZoom(true);
+
+    // 用经纬度设置地图中心点  
+    function theLocation(){
+        if(document.getElementById("longitude").value != "" && document.getElementById("latitude").value != ""){
+            map.clearOverlays();
+            var new_point = new BMap.Point(document.getElementById("longitude").value,document.getElementById("latitude").value);
+            coordinateArr.push(new_point);
+            var myIcon = new BMap.Icon("http://developer.baidu.com/map/jsdemo/img/car.png", new BMap.Size(52, 26), {    //小车图片  
+                //offset: new BMap.Size(0, -5),    //相当于CSS精灵
+                imageOffset: new BMap.Size(0, 0)    //图片的偏移量。为了是图片底部中心对准坐标点。
+            });
+            var marker = new BMap.Marker(new_point,{icon:myIcon});  // 创建标注
+            var opts = {
+                width: 200,
+                title: '为什么？',
+                enableMessage: false
+
+            };
+            //console.log(markers[index].content);
+            var infoWindow = new BMap.InfoWindow("内容啊啊啊啊",
+                    opts);
+            marker.addEventListener("click",function(){
+                marker.openInfoWindow(infoWindow,new_point);
+            });
+            map.addOverlay(marker);              // 将标注添加到地图中  
+            map.panTo(new_point); //小车在地图中心           
+        }
+    }
+
+    //自动改变经纬度  
+    var randoms = 0;
+    function min(){
+        document.getElementById("longitude").value-=0.0000681;
+    }
+
+    //绘制轨迹  
+    function drawLine(){
+        var polyline = new BMap.Polyline(coordinateArr, {strokeColor:"blue", strokeWeight:4, strokeOpacity:0.6});
+        map.addOverlay(polyline);
+    }
+
+
+    setInterval("min()",1000);
+    setInterval("theLocation()",2000);//定位
+    setInterval("drawLine()",500);//绘制轨迹
+
+</script>  

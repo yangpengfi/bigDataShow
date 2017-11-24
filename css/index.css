@@ -1,0 +1,87 @@
+
+body{
+    background: url("../images/homeBg_min.png") no-repeat center;
+    background-size: 100% 100%;
+}
+/*index*/
+.navTop{
+    height: 1.25rem;
+    background-color: rgba(1,64,153,.2);
+}
+.navTop>img{
+margin: 7px 30px;
+}
+.activess{
+    background-color:rgba(40,128,191,.05);
+}
+.login{
+    float: right;
+    display: block;
+    line-height: 1.25rem;
+    color: #ccc;
+    font-size: 0.45rem;
+    margin-right: 30px;
+}
+#loginBox{
+    width:20%;
+    /*border: 1px solid #ddd;*/
+    position: fixed;
+    right:20px;
+    top:55px;
+    padding:25px;
+    color:#fff;
+    background: rgba(255,255,255,.2);
+    border-radius: 5px;
+}
+#loginBox h2{
+    line-height: 50px;
+}
+.navTop li{
+    line-height: 1.25rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-left: -0.125rem;
+}
+.navTop li>a{
+    color:#d9d9dc;
+    font-size: 18px;
+}
+.citys{
+    position: relative;
+    padding-right: 5px!important;
+}
+.navTop .citys>a{
+    color:#2d91d8;
+}
+.citys div{
+    position: absolute;
+    top:1.25rem;
+    left: 0;
+    width:5.625rem;
+    height: 2.5rem;
+    padding: 0.125rem;
+    color:#4067b5;
+    background-color: #040a28;
+}
+.citys div>span{
+    padding: 0.5rem 0.25rem;
+    cursor: pointer;
+}
+.conts{
+    width: 54.2%;
+    margin: 16.5% auto 0;
+}
+.conts>img{
+    width: 100%;
+}
+.conts>button{
+    border: 1px solid #fff;
+    width: 7rem;
+    height: 1.75rem;
+    font-size: .7rem;
+    border-radius: .875rem;
+    background-color: #16192F;
+    margin-top: 3.4rem;
+    color:#fff;
+    outline: none;
+}

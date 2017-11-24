@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>首页</title>
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="lib/bootstrap/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/base.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
+</head>
+<body>
+
+<nav class="navTop">
+    <img class="pull-left" src="images/logo.png" alt="logo"/>
+    <ul class="list-unstyled list-inline pull-left">
+        <li class="activess">
+            <a href="index.html">首页</a>
+        </li>
+        <li class="citys">
+            <a href="#">
+                <i class="fa fa-map-marker"></i>&nbsp;
+                <span class="city_show" data-cityNum="091001">邯郸</span>&nbsp;&nbsp;
+                <i class="fa fa-sort-down"></i>
+            </a>
+            <div class="hide city_comp">
+                <span data-cityNum="091001">邯郸</span>
+                <span data-cityNum="250601">常德</span>
+                <span data-cityNum="020300">宝山</span>
+                <span data-cityNum="271101">宜宾</span>
+                <span data-cityNum="300601">梧州</span>
+                <span data-cityNum="300301">柳州</span>
+                <span data-cityNum="281103">开平</span>
+                <span data-cityNum="280601">深圳</span>
+            </div>
+        </li>
+    </ul>
+    <a href="#"  class="login">登录浏览</a>
+</nav>
+<div class="conts text-center">
+    <img src="images/index_wz.png" alt="文字"/><br/>
+    <button onclick="window.location.href='passengerStatistics.html'">进入</button>
+</div>
+<form id="loginBox">
+    <h2>用户登录</h2>
+    <div class="form-group">
+        <input type="text" class="form-control" id="userName" placeholder="用户名">
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" id="Password1" placeholder="密码">
+    </div>
+    <a class="btn btn-default loginBtn pull-right" href="http://10.1.10.130:8088/BigDateShow/home/%E4%BD%8D%E7%A7%BB%E5%AF%86%E9%9B%86%E5%8C%BA%E5%9F%9F%E4%B8%8Eod%E8%B6%8B%E5%8A%BF%E5%88%86%E6%9E%90.html">登录</a>
+    <button class="btn btn-default loginHide pull-right" style="margin-right: 20px;background-color: rgba(165, 181, 204, 0.72);outline: none;border: none;">取消</button>
+</form>
+<script src="lib/jquery-1.11.3.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script>
+    $(function(){
+
+        (function(){//本地存储有天气请求就显示
+            var weathers=JSON.parse(localStorage.getItem('weather'));
+            if(weathers){
+                $('.city_show').html(weathers.area[2][0]);
+                $('.city_show').attr('data-cityNum',weathers.area[2][1].substr(3));
+            }
+            getWeather($('.city_show').attr('data-cityNum'));
+        })();
+        //登录
+        $("#loginBox").hide();
+        $(".login").click(function(){
+            $("#loginBox").show();
+        });
+        $('.loginHide').click(function(){
+            $("#loginBox").hide();
+        });
+        //index页面
+        $('.citys').hover(function(){
+            $(this).addClass("activess");
+            $(this).children('div').removeClass('hide');
+        },function(){
+            $(this).removeClass("activess");
+            $(this).children('div').addClass('hide');
+        });
+        $('.city_comp>span').click(function(){
+            var cityCode=$(this).attr('data-cityNum');
+            $('.city_show').html($(this).html());
+            $('.city_show').attr('data-cityNum',cityCode);
+            getWeather(cityCode);
+        });
+
+        //进入按钮
+        $('.conts button').hover(function(){
+            $(this).css({'background':'#eeeff0','color':'#333'});
+        },function(){
+            $(this).css({'background':'#16192F','color':'#fff'});
+        })
+        //获取天气预报
+        function getWeather(num){
+            $.ajax({/*请求数据*/
+                type:'get',
+                url:'https://qweather.ssl.qhimg.com/sed_api_weather_info.php?code=101'+num+'&_jsonp=?',
+                dataType:'jsonp',
+                success:function(data){/*数据请求成功后进行数据处理*/
+                    localStorage.setItem('weather',JSON.stringify(data));
+                }
+            })
+        };
+    })
+</script>
+</body>
+</html>
